@@ -1,0 +1,82 @@
+[
+    {
+        "date": "2028-11-28",
+        "services": [
+            {
+                "room_name": "Admission",
+                "options": [
+                    {
+                        "time": "11:00am - 10:00pm",
+                        "slots": 50,
+                        "price": 25
+                    },
+                    {
+                        "time": "13:00am - 09:00pm",
+                        "slots": 100,
+                        "price": 25
+                    }
+                ]
+            },
+            {
+                "room_name": "Party Room",
+                "options": [
+                    {
+                        "time": "09:00am - 09:00pm",
+                        "slots": 50,
+                        "price": 25
+                    },
+                    {
+                        "time": "10:00am - 10:00pm",
+                        "slots": 100,
+                        "price": 25
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "date": "2028-11-29",
+        "services": [
+            {
+                "room_name": "Admission 2",
+                "options": [
+                    {
+                        "time": "11:00am - 10:00pm",
+                        "slots": 50,
+                        "price": 25
+                    },
+                    {
+                        "time": "13:00am - 09:00pm",
+                        "slots": 100,
+                        "price": 25
+                    }
+                ]
+            },
+            {
+                "room_name": "Party Room 2",
+                "options": [
+                    {
+                        "time": "09:00am - 09:00pm",
+                        "slots": 50,
+                        "price": 25
+                    },
+                    {
+                        "time": "10:00am - 10:00pm",
+                        "slots": 100,
+                        "price": 25
+                    },
+                    {
+                        "time": "12:00pm - 13:00pm",
+                        "slots": 100,
+                        "price": 25
+                    },
+                    {
+                        "time": "14:00pm - 15:00pm",
+                        "slots": 100,
+                        "price": 25
+                    }
+                ]
+            }
+        ]
+    }
+]

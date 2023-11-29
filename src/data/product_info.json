@@ -1,0 +1,9 @@
+{
+    "price": 50,
+    "sale_price": 25,
+    "sale_percent": "50%",
+    "product_name": "Summer Combo",
+    "detail_url" : "#",
+    "min_quantity": 1,
+    "max_quantity": 12
+}
