@@ -1,6 +1,6 @@
 <template>
     <div class="border-t border-current pt-2">
-        <div class="sm:flex justify-between items-end text-lg font-semibold">
+        <div class="flex justify-between items-end text-lg font-semibold">
             <div>
                 Sub-total
             </div>
@@ -8,7 +8,7 @@
                 {{sub_total.toFixed(2)}}$
             </div>
         </div>
-        <div class="sm:flex justify-between items-end text-lg font-semibold mt-1">
+        <div class="flex justify-between items-end text-lg font-semibold mt-1">
             <div>
                 Savings
             </div>

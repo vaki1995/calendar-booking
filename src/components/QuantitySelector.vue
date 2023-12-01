@@ -1,6 +1,6 @@
 <template>
-    <div class="sm:flex items-center justify-between mb-2 px-1 py-2 border rounded border-cyan-500">
-        <button @click="subtractQuantity" class="sm:flex pb-1 justify-center items-center h-5 w-5 border rounded-full border-cyan-500 font-medium text-cyan-500 hover:border-orange-600 hover:text-orange-600">
+    <div class="flex items-center justify-between mb-2 px-1 py-2 border rounded border-cyan-500">
+        <button @click="subtractQuantity" class="flex pb-1 justify-center items-center h-5 w-5 border rounded-full border-cyan-500 font-medium text-cyan-500 hover:border-orange-600 hover:text-orange-600">
         -
         </button>
         <input 
@@ -10,7 +10,7 @@
         :max="max_quantity"
         class="w-10 text-center font-bold text-xl" 
         />
-        <button @click="addQuantity" class="sm:flex pb-1 justify-center items-center h-5 w-5 border rounded-full border-cyan-500 font-medium text-cyan-500 hover:border-orange-600 hover:text-orange-600">
+        <button @click="addQuantity" class="flex pb-1 justify-center items-center h-5 w-5 border rounded-full border-cyan-500 font-medium text-cyan-500 hover:border-orange-600 hover:text-orange-600">
         +
         </button>
     </div>

@@ -3,9 +3,9 @@
         <Listbox v-model="localSelectOption">
             <div class="relative mt-1">
                 <ListboxButton
-                class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm border sm:flex"
+                class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm border flex"
                 >
-                <span class="block truncate w-2/5 option-booking-room" :data-room-name="roomName">{{ localSelectOption.time }}</span>
+                <span class="block truncate w-3/5 sm:w-2/5 option-booking-room" :data-room-name="roomName">{{ localSelectOption.time }}</span>
                 <span class="w-1/5 text-center">{{ localSelectOption.slots }} slots</span>
                 <span
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
@@ -35,7 +35,7 @@
                     <li
                         :class="[
                         active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-10 pr-4 sm:flex',
+                        'relative cursor-default select-none py-2 pl-10 pr-4 flex',
                         ]"
                     >
                         <span
