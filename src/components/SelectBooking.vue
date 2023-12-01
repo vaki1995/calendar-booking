@@ -3,9 +3,10 @@
         <Listbox v-model="localSelectOption">
             <div class="relative mt-1">
                 <ListboxButton
-                class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm border"
+                class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm border sm:flex"
                 >
-                <span class="block truncate">{{ localSelectOption.time }}</span>
+                <span class="block truncate w-2/5 option-booking-room" :data-room-name="roomName">{{ localSelectOption.time }}</span>
+                <span class="w-1/5 text-center">{{ localSelectOption.slots }} slots</span>
                 <span
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
                 >
@@ -34,16 +35,18 @@
                     <li
                         :class="[
                         active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-10 pr-4',
+                        'relative cursor-default select-none py-2 pl-10 pr-4 sm:flex',
                         ]"
                     >
                         <span
                         :class="[
                             selected ? 'font-medium' : 'font-normal',
-                            'block truncate',
-                        ]"
-                        >{{ item.time }}</span
-                        >
+                            'block truncate w-2/5',
+                        ]">{{ item.time }}</span>
+                        <span :class="[
+                            selected ? 'font-medium' : 'font-normal',
+                            'w-1/5 text-center',
+                        ]">{{ item.slots }} slots</span>
                         <span
                         v-if="selected"
                         class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
@@ -86,6 +89,10 @@ export default {
         selectOption: {
             type: Object,
             required: true
+        },
+        roomName: {
+            type: String,
+            required: true
         }
     },
     data() {
@@ -95,10 +102,10 @@ export default {
     },
     watch: {
         selectOption(newVal) {
-        this.localSelectOption = newVal;
+            this.localSelectOption = newVal;
         },
         localSelectOption(newVal) {
-        this.$emit("update:selectOption", newVal);
+            this.$emit("update:selectOption", newVal);
         },
     },
 }

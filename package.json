@@ -12,6 +12,7 @@
     "@heroicons/vue": "^2.0.18",
     "core-js": "^3.8.3",
     "flowbite-datepicker": "^1.2.4",
+    "moment": "^2.29.4",
     "vue": "^3.2.13",
     "vue3-dayjs-plugin": "^1.0.2"
   },

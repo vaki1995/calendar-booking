@@ -4,7 +4,7 @@
         -
         </button>
         <input 
-        v-model="quantity"
+        v-model="inject_quantity"
         @input="handleInput"
         :min="min_quantity"
         :max="max_quantity"
@@ -17,12 +17,21 @@
     <div class="text-right text-xs mb-4">
         Quantity: Min {{ min_quantity }} - Max {{ max_quantity }}
     </div>
+    <FootPage :sub_total="this.sub_total" :savings="this.savings" />
 </template>
 
 <script>
+import FootPage from './FootPage.vue'
     export default {
         name: "QuantitySelector",
-        inject: {
+        components: {
+            FootPage
+        },
+        props: {
+            quantity: {
+                type: Number,
+                required: true,
+            },
             min_quantity: {
                 type: Number,
                 required: true,
@@ -30,29 +39,43 @@
             max_quantity: {
                 type: Number,
                 required: true,
-            }
+            },
+            sale_price: {
+                type: Number,
+                required: true,
+            },
         },
+
         data() {
             return {
-                quantity: 1,
+                inject_quantity: this.quantity,
+                sub_total: this.min_quantity * this.sale_price,
+                savings: this.min_quantity * this.sale_price,
             };
         },
         methods: {
             addQuantity() {
-                if(this.quantity < this.max_quantity) {
-                    this.quantity += 1;
+                console.log(this.inject_quantity, this.max_quantity);
+                if(this.inject_quantity < this.max_quantity) {
+                    this.inject_quantity += 1;
+                    this.sub_total = this.inject_quantity * this.sale_price;
+                    this.savings = this.inject_quantity * this.sale_price;
+                    this.$emit('quantityClick', this.inject_quantity);
                 }
             },
             subtractQuantity() {
-                if (this.quantity > this.min_quantity) {
-                    this.quantity -= 1;
+                if (this.inject_quantity > this.min_quantity) {
+                    this.inject_quantity -= 1;
+                    this.sub_total = this.inject_quantity * this.sale_price;
+                    this.savings = this.inject_quantity * this.sale_price;
+                    this.$emit('quantityClick', this.inject_quantity);
                 }
             },
             handleInput() {
-                if (this.quantity < this.min_quantity) {
-                    this.quantity = this.min_quantity;
-                } else if (this.quantity > this.max_quantity) {
-                    this.quantity = this.max_quantity;
+                if (this.inject_quantity < this.min_quantity) {
+                    this.inject_quantity = this.min_quantity;
+                } else if (this.inject_quantity > this.max_quantity) {
+                    this.inject_quantity = this.max_quantity;
                 }
             },
         },
