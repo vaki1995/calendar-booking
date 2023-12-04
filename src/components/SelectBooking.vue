@@ -1,85 +1,102 @@
 <template>
     <div class="w-full mb-3">
-        <Listbox v-model="localSelectOption">
-            <div class="relative mt-1">
-                <ListboxButton
-                class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm border flex"
-                >
-                <span class="block truncate w-3/5 sm:w-2/5 option-booking-room" :data-room-name="roomName">{{ localSelectOption.time }}</span>
-                <span class="w-1/5 text-center">{{ localSelectOption.slots }} slots</span>
-                <span
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
-                >
-                    <ChevronUpDownIcon
-                    class="h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                    />
-                </span>
-                </ListboxButton>
+        <Disclosure v-slot="{ open }">
+            <DisclosureButton
+            :class="open ? 'bg-orange-100' : ''"
+            class="flex w-full justify-between border border-orange-500 rounded-lg px-4 py-2 text-left text-sm font-medium text-orange-500 hover:bg-orange-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500/75"
+            >
+            <span class="block truncate option-booking-room" :data-room-name="roomName">{{ localSelectOption.time }}</span>
+            <span class="text-center">{{ localSelectOption.slots }} slots</span>
+            <ChevronUpIcon
+                :class="open ? 'rotate-180 transform' : ''"
+                class="h-5 w-5 text-orange-500"
+            />
+            </DisclosureButton>
 
-                <transition
-                leave-active-class="transition duration-100 ease-in"
-                leave-from-class="opacity-100"
-                leave-to-class="opacity-0"
-                >
-                <ListboxOptions
-                    class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm z-10"
-                >
-                    <ListboxOption
-                    v-slot="{ active, selected }"
-                    v-for="item in infoBooking"
-                    :key="item.time"
-                    :value="item"
-                    as="template"
-                    >
-                    <li
-                        :class="[
-                        active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-10 pr-4 flex',
-                        ]"
-                    >
-                        <span
-                        :class="[
-                            selected ? 'font-medium' : 'font-normal',
-                            'block truncate w-2/5',
-                        ]">{{ item.time }}</span>
-                        <span :class="[
-                            selected ? 'font-medium' : 'font-normal',
-                            'w-1/5 text-center',
-                        ]">{{ item.slots }} slots</span>
-                        <span
-                        v-if="selected"
-                        class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
+            <transition
+            leave-active-class="transition duration-100 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+            >
+            <DisclosurePanel class="mb-4 text-sm rounded-lg shadow-md text-gray-500">
+                <RadioGroup v-model="localSelectOption">
+                    <div class="space-y-1">
+                        <RadioGroupOption
+                            as="template"
+                            v-for="item in infoBooking"
+                            :key="item.time"
+                            :value="item"
+                            v-slot="{ active, checked }"
                         >
-                        <CheckIcon class="h-5 w-5" aria-hidden="true" />
-                        </span>
-                    </li>
-                    </ListboxOption>
-                </ListboxOptions>
-                </transition>
-            </div>
-        </Listbox>
+                            <div
+                            :class="[
+                                active
+                                ? 'ring-2 ring-white/60 ring-offset-2 ring-offset-sky-300'
+                                : '',
+                                checked ? 'bg-orange-600/75 text-white ' : 'bg-white ',
+                            ]"
+                            class="relative flex cursor-pointer px-5 py-2 rounded-sm shadow-md focus:outline-none"
+                            >
+                                <div class="flex w-full items-center">
+                                    <div class="flex items-center justify-between w-full text-sm">
+                                        <RadioGroupLabel
+                                        as="p"
+                                        :class="checked ? 'text-white' : 'text-gray-900'"
+                                        class="font-medium"
+                                        >
+                                        {{ item.time }}
+                                        </RadioGroupLabel>
+                                        <RadioGroupDescription
+                                        as="span"
+                                        :class="checked ? 'text-sky-100' : 'text-gray-500'"
+                                        class="inline"
+                                        >
+                                        {{ item.slots }} slots
+                                        </RadioGroupDescription>
+                                        <div v-show="checked" class="shrink-0 text-white">
+                                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
+                                                <circle
+                                                cx="12"
+                                                cy="12"
+                                                r="12"
+                                                fill="#fff"
+                                                fill-opacity="0.2"
+                                                />
+                                                <path
+                                                d="M7 13l3 3 7-7"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </RadioGroupOption>
+                    </div>
+                </RadioGroup>
+            </DisclosurePanel>
+            </transition>
+        </Disclosure>
     </div>
 </template>
 
 <script>
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption,
-} from '@headlessui/vue'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import { Disclosure, DisclosureButton, DisclosurePanel, RadioGroupDescription, RadioGroupOption, RadioGroup } from '@headlessui/vue'
+import { ChevronUpIcon } from '@heroicons/vue/20/solid'
   
 export default {
     name: "SelectBooking",
     components: {
-        Listbox,
-        ListboxButton,
-        ListboxOptions,
-        ListboxOption,
-        CheckIcon,
-        ChevronUpDownIcon
+        Disclosure,
+        DisclosureButton,
+        DisclosurePanel,
+        RadioGroup,
+        RadioGroupDescription,
+        RadioGroupOption,
+        ChevronUpIcon
     },
     props: {
         infoBooking: {
@@ -93,7 +110,7 @@ export default {
         roomName: {
             type: String,
             required: true
-        }
+        },
     },
     data() {
         return {

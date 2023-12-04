@@ -4,7 +4,7 @@
             <ul>
                 <li v-for="(item, index) in listBooking" :key="index"> 
                     <div>Choose your time of visit <span class="font-semibold">( {{ item.room_name }} )</span></div>
-                    <SelectBooking :infoBooking="item.options" :selectOption="item.options[0]" :roomName="item.room_name"/>
+                    <SelectBooking :infoBooking="item.options" :selectOption="item.options[0]" :roomName="item.room_name" :open="true"/>
                 </li>
             </ul> 
         </div>
